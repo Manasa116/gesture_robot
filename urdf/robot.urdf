@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot name="crane_arm">
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.6 0.6 0.1"/>
+      </geometry>
+      <material name="gray">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="turret_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.4" radius="0.1"/>
+      </geometry>
+      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+      <material name="red">
+        <color rgba="0.8 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="joint_1" type="revolute">
+    <parent link="base_link"/>
+    <child link="turret_link"/>
+    <origin xyz="0 0 0.05"/>
+    <axis xyz="0 0 1"/> <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
+  </joint>
+
+  <link name="arm_link">
+    <visual>
+      <geometry>
+        <box size="0.1 0.8 0.1"/>
+      </geometry>
+      <origin xyz="0 0.35 0" rpy="0 0 0"/> <material name="green">
+        <color rgba="0 0.8 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="joint_2" type="revolute">
+    <parent link="turret_link"/>
+    <child link="arm_link"/>
+    <origin xyz="0 0 0.35"/> <axis xyz="1 0 0"/> <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
+  </joint>
+
+</robot>
